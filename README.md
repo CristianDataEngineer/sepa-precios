@@ -1,6 +1,8 @@
 # sepa_precios
 
-Pipeline en Databricks que construye el histórico de [Precios Claros – Base SEPA](https://datos.produccion.gob.ar/dataset/sepa-precios). La Secretaría de Comercio publica un ZIP por día, de unos 310 MB y ~14 millones de precios, y a la semana lo pisa. Este pipeline guarda cada ZIP, lo lleva por medallion (landing → bronze → silver → gold) y publica una canasta comparable. Lo orquesta un Workflow diario.
+Pipeline en Databricks que procesa ~14 millones de precios por día del ZIP de [Precios Claros](https://datos.produccion.gob.ar/dataset/sepa-precios), los transforma en medallion (landing → bronze → silver → gold), implementa SCD Type 2 en sucursal y producto, y lo orquesta un Workflow diario.
+
+La Secretaría de Comercio publica ese ZIP (~310 MB) y a la semana lo pisa. Este pipeline guarda cada archivo y publica una canasta comparable.
 
 La pregunta que responde: **¿cuánto subió la canasta y qué cadena la vende más barata?**
 
