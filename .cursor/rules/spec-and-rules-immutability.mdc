@@ -1,0 +1,33 @@
+---
+description: SPEC.md y rules .mdc son inmutables salvo pedido explícito.
+alwaysApply: true
+---
+
+# Contratos y rules: no tocar por defecto
+
+Tratar como **inmutables**:
+
+- cualquier `SPEC.md` (landing, bronze, silver, gold, semantic, u otros)
+- cualquier rule en `.cursor/rules/*.mdc`
+
+## Cuándo sí se pueden cambiar
+
+Solo si el usuario lo pide **explícitamente** en ese mensaje. Vale, por ejemplo:
+
+- "editá el SPEC de silver"
+- "actualizá la rule de Databricks"
+- "agregá una rule nueva"
+
+No vale inferirlo: un pedido de código, pipeline, EDA, refactor o "alinealo al SPEC" **no** autoriza editar el SPEC ni las `.mdc`.
+
+## Qué hacer en su lugar
+
+- **Leer** esos archivos y cumplirlos.
+- Si el trabajo entra en conflicto con un SPEC o una rule, **parar y preguntar**. No “arreglar” el contrato para que el código pase.
+- Crear un `SPEC.md` o `.mdc` nuevo también requiere pedido explícito.
+
+```text
+❌ Actualizar gold/SPEC.md porque agregamos un fact
+❌ Ajustar stack-databricks.mdc al implementar un job
+✅ Implementar el fact y, si el SPEC quedó corto, avisar y esperar OK para editarlo
+```
